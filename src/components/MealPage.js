@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const MealPage = () => {
   const [recipeCategory, setRecipeCategory] = useState([])
+  const [categorySearchTerm, setCategorySearchTerm] = useState('categories')
+  // const [recipeSearchTerm, setRecipeSearchTerm] = useState('')
 
-  const fetchData = async () => {
+  const fetchDataCategories = async () => {
     const resp = await axios.get(
-      `https://www.themealdb.com/api/json/v1/1/categories.php`
+      `https://www.themealdb.com/api/json/v1/1/${categorySearchTerm}.php`
     )
     console.log(resp.data)
     setRecipeCategory(resp.data.categories)
   }
 
   useEffect(() => {
-    fetchData()
+    fetchDataCategories()
   }, [])
 
   return (
@@ -27,12 +30,15 @@ const MealPage = () => {
             {recipeCategory.map((item, i) => {
               return (
                 <li className="category-specific" key={i}>
-                  {item.strCategory}
-                  <img
-                    className="category-image"
-                    src={item.strCategoryThumb}
-                    alt="Recipe Category Thumbnails"
-                  />
+                  <Link to={`/${item.strCategory}`}>
+                    <img
+                      className="category-image"
+                      src={item.strCategoryThumb}
+                      alt="Recipe Category Thumbnails"
+                      value={categorySearchTerm}
+                    />
+                    <p className="category-text"> {item.strCategory}</p>
+                  </Link>
                 </li>
               )
             })}
