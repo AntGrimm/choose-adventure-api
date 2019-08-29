@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 
 const RecipesByCategory = props => {
   const [recipeMeal, setRecipeMeal] = useState([])
-  const [recipeSearchTerm, setRecipeSearchTerm] = useState(
-    props.match.params.category
-  )
+  const recipeSearchTerm = props.match.params.category
 
   const fetchDataRecipes = async () => {
     const resp = await axios.get(
@@ -28,7 +26,7 @@ const RecipesByCategory = props => {
             {recipeMeal.map((item, i) => {
               return (
                 <li className="recipe-meal" key={i}>
-                  <Link to={`/${item.strMeal}`}>
+                  <Link to={`${recipeSearchTerm}/${item.strMeal}`}>
                     <img
                       className="recipe-image"
                       src={item.strMealThumb}
