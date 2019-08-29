@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const RecipesByCategory = props => {
   const [recipeMeal, setRecipeMeal] = useState([])
@@ -27,13 +28,15 @@ const RecipesByCategory = props => {
             {recipeMeal.map((item, i) => {
               return (
                 <li className="recipe-meal" key={i}>
-                  <img
-                    className="recipe-image"
-                    src={item.strMealThumb}
-                    alt="Recipe Meal Thumbnails"
-                    value={recipeSearchTerm}
-                  />
-                  <p className="recipe-text"> {item.strMeal}</p>
+                  <Link to={`/${item.strMeal}`}>
+                    <img
+                      className="recipe-image"
+                      src={item.strMealThumb}
+                      alt="Recipe Meal Thumbnails"
+                      value={recipeSearchTerm}
+                    />
+                    <p className="recipe-text"> {item.strMeal}</p>
+                  </Link>
                 </li>
               )
             })}

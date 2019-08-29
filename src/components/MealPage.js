@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 const MealPage = () => {
   const [recipeCategory, setRecipeCategory] = useState([])
   const [categorySearchTerm, setCategorySearchTerm] = useState('categories')
-  // const [recipeSearchTerm, setRecipeSearchTerm] = useState('')
 
   const fetchDataCategories = async () => {
     const resp = await axios.get(
