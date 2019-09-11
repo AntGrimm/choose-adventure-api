@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Nunito&display=swap');
+$primary-color: #bada55;
+$secondary-color: rebeccapurple;
+
+@mixin display-type {
+  font-family: 'Lato', sans-serif;
+  line-height: 1em;
+  font-weight: 400;
+}
+
+@mixin main-type {
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.2rem;
+  color: darken($primary-color, 42%);
+}
+
+@mixin rounded-border($radius) {
+  border-radius: $radius;
+  border-color: thick solid darken($primary-color, 20%);
+}
+
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+p {
+  @extend %message-shared;
+}
+
+html {
+  height: 100%;
+}
+
+h1,
+h3 {
+  @include display-type();
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+ul {
+  li {
+    @include display-type;
+    list-style: square;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  @include main-type();
+}
+
+.main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-list {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-image {
+  height: 7rem;
+}
+
+.category-specific {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.recipe-list {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.recipe-image {
+  @include rounded-border(5px);
+  height: 10rem;
+}
+
+.recipe-meal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.recipe-text {
+  max-width: 10rem;
+}
